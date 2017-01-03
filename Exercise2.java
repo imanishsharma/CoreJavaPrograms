@@ -1,26 +1,64 @@
-class Exercise2
+class Details
 {
-   public int add(int num1,int num2)
-   {
-     return num1 + num2;
-   }
-   public double add(double num1, double num2)
-   {
-     return num1 + num2;
-   }
-   public int add(int num1,int num2, int num3)
-   {
-     return num1 + num2 + num3;
-   }
-  public static void main(String arg[])
+  String firstName, lastName;
+  int age;
+  public Details(String firstName, String lastName, int age)
   {
-    int c =20, d= 100, e=120;
-    double i= 5.5,j=3.5;
-    Exercise2 obj = new Exercise2();
-    System.out.println("Add of two integer number:"+ obj.add(c,d));
-   
-    System.out.println("Add of two fractional number:"+ obj.add(i,j));
-    System.out.println("Add of three integer numbers:"+ obj.add(c,d,e));
-    
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
   }
 }
+  class StudentDetails extends Details
+  {
+    String courseEnrolled;
+    String studentID;
+    public StudentDetails(String firstName, String lastName, int age, String courseEnrolled,String studentID)
+    {
+        super(firstName,lastName,age);
+        this.courseEnrolled = courseEnrolled;
+        this.studentID = studentID;
+    }
+    void showStudentDetails()
+    {
+     System.out.println("Student Details");
+     System.out.println("First name :  "+firstName);
+     System.out.println("Last name:  "+lastName);
+     System.out.println("Age :  "+age);
+     System.out.println("Course Enrolled :  "+courseEnrolled);
+     System.out.println("Student ID :  "+studentID);
+    }
+   }
+  class EmployeeDetails extends Details
+  {
+    String departmentName;
+    String designation;
+    String employeeID;
+    public EmployeeDetails(String firstName, String lastName, int age, String departmentName,String designation,String employeeID)
+    {
+      super(firstName,lastName,age);
+      this.departmentName = departmentName;
+      this.designation = designation;
+     }
+      void showEmployeeDetails()
+     {
+     System.out.println("Employee Details");
+     System.out.println("First name :  "+firstName);
+     System.out.println("Last name:  "+lastName);
+     System.out.println("Age :  "+age);
+     System.out.println("Department Name :  "+departmentName);
+     System.out.println("Designation:  "+designation);
+    }
+   }
+  class Exercise2
+  {
+    public static void main(String arg[])
+    {
+      StudentDetails obj = new StudentDetails("Dheeraj","Sharma",21,"BSC","S151160800159");
+      obj.showStudentDetails();
+      EmployeeDetails obj1 = new EmployeeDetails("Diljeet","Singh",21,"IT","Software Developer","S151160800187");
+      obj1.showEmployeeDetails();
+    }
+}
+    
+    
