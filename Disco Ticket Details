@@ -1,0 +1,9 @@
+
+public class RangeException extends Exception 
+{
+	public RangeException()
+	{
+	  System.out.println("You are not eligable for disco...!!!");
+	}
+}
+    
