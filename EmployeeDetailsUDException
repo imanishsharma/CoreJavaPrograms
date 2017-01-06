@@ -1,0 +1,140 @@
+//Pattern Exception for ID not matches with pattern
+
+public class PatternException  extends RuntimeException{
+	public PatternException()
+	{
+		System.out.println("Employee ID not in correct pattern...");
+	}
+	public PatternException(String msg)
+	{
+	super(msg);
+	}
+
+}
+
+
+//Selection Exception for invalid option
+
+public class SelectionException extends Exception {
+public SelectionException()
+{
+	System.out.println("You selects an invalid option...Please select an valid option");
+	
+}
+	
+
+}
+
+
+
+//MAIN EMPLOYEE DETAILS CLASS 
+
+import java.util.*;
+public class EmployeeDetails {
+	String employeeDetails[][] = new String[100][8];
+	public void showMenu() throws SelectionException{
+		int option;
+		System.out.println("~~~~~~~~Menu~~~~~~~~");
+		Scanner s = new Scanner(System.in);
+		System.out.println("1. Enter Employee Details");
+		System.out.println("2. Display Employee Details");
+		System.out.println("3. Exit");
+		option = s.nextInt();
+		if(option >3 || option < 1 ) {
+			throw new SelectionException();
+		}else{
+		switch(option)
+		{
+		case 1:
+			enterData();
+			showMenu();
+			break;
+		case 2:
+			displayData();
+			showMenu();
+			break;
+		case 3:
+		     exitMenu();
+		     break;
+		default:
+			System.out.println("Incorrect option...");
+			showMenu();
+			break;
+		}
+		}
+	}
+public void enterData()
+{
+	Scanner scan = new Scanner(System.in);
+	char choice = 'y';
+	int i =0;
+	do{
+		System.out.println("Enter Employee ID...");
+		String empID = scan.next();
+		char c = empID.charAt(0);
+		if(c != 'e')
+		{
+			throw new PatternException();
+		}
+		employeeDetails[i][0] =empID;
+		System.out.println("Enter Employee Name:");
+		employeeDetails[i][1] =scan.next();
+        System.out.println("Enter Department:");
+		employeeDetails[i][2] =scan.next();
+        System.out.println("Enter Designation:");
+		employeeDetails[i][3] =scan.next();
+        System.out.println("Enter Date of joining:");
+		employeeDetails[i][4] =scan.next();
+        System.out.println("Enter maritial status:");
+		employeeDetails[i][5] =scan.next().toLowerCase();
+		if(employeeDetails[i][6].equals("married")){
+		    System.out.println("Enter Date of marriage");
+			employeeDetails[i][7] =scan.next();
+		}else{
+		    employeeDetails[i][7] = "na";
+		    
+		}i++;
+		System.out.println("Do you wish to add more details?");
+		String ch = scan.next().toLowerCase();
+		choice  = ch.charAt(0);
+	}while(choice == 'y');
+}
+public void displayData() throws SelectionException
+{
+	System.out.println("Employee Details:");
+	for(int i =0; i< employeeDetails.length;i++)
+	{
+		for(int j=0; j< employeeDetails[i].length;j++)
+		{
+			if(employeeDetails[i][j]==null){
+				showMenu();
+			}else{
+				System.out.println(employeeDetails[i][j]);
+			}
+		
+		}
+	}
+	
+}
+ public void exitMenu()
+ {
+	 System.exit(0);
+ }
+ public static void main(String[] args)
+ {
+	 int flag =0;
+	 EmployeeDetails obj = new EmployeeDetails();
+	 do{
+		 flag=0;
+		 {
+		 try{
+			 obj.showMenu();
+		 }catch(SelectionException obja){
+		 System.out.println("Exception caught:" + obja);
+		 }
+	 }
+	 }
+ while(flag !=1);
+}
+}
+		 
