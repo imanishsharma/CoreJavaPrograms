@@ -7,3 +7,51 @@ public class RangeException extends Exception
 	}
 }
     
+
+
+
+
+import java.util.Scanner;
+	public class Registration
+	{
+		int age;
+	    Scanner scan = new Scanner(System.in);
+	    String name,contactNumber;
+		public void checkAge(int rage) throws RangeException
+		{
+		if((rage < 18) || (rage>55))
+		{
+			throw new RangeException();
+		}
+		else{
+		System.out.println("Your details registered");
+		}
+		}
+		public void RegistrationForm()
+		{
+			System.out.println("Disco Ticket Registration Form");
+			System.out.println("Enter your Name");
+			name = scan.nextLine();
+			System.out.println("Enter your contact number");
+			contactNumber = scan.nextLine();
+			System.out.println("Enter your age");
+			age = scan.nextInt();
+			try{
+				checkAge(age);
+			}
+			catch(RangeException e)
+			{
+			 
+			}
+		}
+		public static void main(String[] args)
+		{
+			Registration obj = new Registration();
+			obj.RegistrationForm();
+		}
+	}
+	    
+	
+	
+
+
